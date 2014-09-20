@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<title>剪约预约接口功能测试</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"><!--???-->
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+		<!--<link rel="stylesheet" href="/static/css/register.css">-->
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<div class="panel panel-default">
+  						<div class="panel-heading">快速预约</div>
+  						<div class="panel-body">  							
+  							<div class="row">
+	  							<div class="col-md-6 col-md-offset-3">
+		    						<form role="form">
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="姓名" id="form-quickappt-name">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="电话号码" id="form-quickappt-phone">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="性别" id="form-quickappt-sex">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="经度" id="form-quickappt-longitude">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="纬度" id="form-quickappt-latitude">
+									  </div>
+									   <button type="button" id="quickappt" class="btn btn-success col-md-offset-1">发送</button>
+                                       <button type="button" id="quickappt" class="btn btn-danger col-md-offset-4">报错</button>
+									</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="alert alert-success" role="alert" hidden="true"><p></p></div>
+								</div>
+							</div>	
+							<div class="panel-group" id="accordion-quickappt">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#accordion-quickappt" href="#api-quickappt">
+							          挑战说明
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="api-quickappt" class="panel-collapse collapse">
+							      <div class="panel-body">
+							      	 输入测试数据，查看返回是否合法
+							      </div>
+							    </div>
+							  </div>
+							</div>	
+  						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<div class="panel panel-default">
+  						<div class="panel-heading">普通预约</div>
+  						<div class="panel-body">
+    						<div class="row">
+	  							<div class="col-md-6 col-md-offset-3">
+		    						<form role="form">
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="经度" id="form-normalappt-longitude">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="纬度" id="form-normalappt-latitude">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="日期" id="form-normalappt-date">
+									  </div>
+                                       <button type="button" id="normalappt" class="btn btn-success col-md-offset-1">发送</button>
+                                       <button type="button" id="quickappt" class="btn btn-danger col-md-offset-4">报错</button>
+									</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="alert alert-success" role="alert" hidden="true"><p></p></div>
+								</div>
+							</div>	
+							<div class="panel-group" id="accordion-normalappt">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#accordion-normalappt" href="#api-normalappt">
+							          挑战说明
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="api-normalappt" class="panel-collapse collapse">
+							      <div class="panel-body">
+							      	输入测试数据，查看返回是否合法
+							      </div>
+							    </div>
+							  </div>
+							</div>
+  						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<div class="panel panel-default">
+  						<div class="panel-heading">订单提交</div>
+  						<div class="panel-body">
+    						<div class="row">
+	  							<div class="col-md-6 col-md-offset-3">
+		    						<form role="form">
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="顾客电话号码" id="form-subord-cusphone">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="姓名" id="form-subord-name">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="性别" id="form-subord-sex">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="理发师电话号码" id="form-subord-barphone">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="发型" id="form-subord-hairstyle">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="时间" id="form-subord-time">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="距离" id="form-subord-distance">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="备注" id="form-subord-remark">
+									  </div>
+                                      <button type="button" id="subord" class="btn btn-success col-md-offset-1">发送</button>
+                                      <button type="button" id="quickappt" class="btn btn-danger col-md-offset-4">报错</button>
+									</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="alert alert-success" role="alert" hidden="true"><p></p></div>
+								</div>
+							</div>	
+							<div class="panel-group" id="sub-accordion">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#sub-accordion" href="#api-sub">
+							          挑战说明
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="api-sub" class="panel-collapse collapse">
+							      <div class="panel-body">
+							      	输入可能数据，测试返回结果是否合法
+							      </div>
+							    </div>
+							  </div>
+							</div>
+  						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<div class="panel panel-default">
+  						<div class="panel-heading">顾客是否注册</div>
+  						<div class="panel-body">
+    						<div class="row">
+	  							<div class="col-md-6 col-md-offset-3">
+		    						<form role="form">
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="电话号码" id="form-isregister-phone">
+									  </div>
+                                      <button type="button" id="isregister" class="btn btn-success col-md-offset-1">发送</button>
+                                      <button type="button" id="quickappt" class="btn btn-danger col-md-offset-4">报错</button>
+									</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="alert alert-success" role="alert" hidden="true"><p></p></div>
+								</div>
+							</div>	
+							<div class="panel-group" id="is-accordion">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#is-accordion" href="#api-is">
+							          挑战说明
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="api-is" class="panel-collapse collapse">
+							      <div class="panel-body">
+							      	输入可能数据，测试返回结果是否合法
+							      </div>
+							    </div>
+							  </div>
+							</div>
+  						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<div class="panel panel-default">
+  						<div class="panel-heading">理发师接受订单</div>
+  						<div class="panel-body">
+    						 <div class="row">
+	  							<div class="col-md-6 col-md-offset-3">
+		    						<form role="form">
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="订单ID" id="form-ordaccepted-id">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="电话号码" id="form-ordaccepted-phone">
+									  </div>
+                                      <div class="form-group">
+									    <input type="text" class="form-control" placeholder="距离" id="form-ordaccepted-distance">
+									  </div>
+                                      <button type="button" id="ordaccepted" class="btn btn-success col-md-offset-1">发送</button>
+                                      <button type="button" id="quickappt" class="btn btn-danger col-md-offset-4">报错</button>
+									</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="alert alert-success" role="alert" hidden="true"><p></p></div>
+								</div>
+							</div>	
+							<div class="panel-group" id="acc-accordion">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#acc-accordion" href="#api-acc">
+							          挑战说明
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="api-acc" class="panel-collapse collapse">
+							      <div class="panel-body">
+							      	输入测试数据，查看返回值是否合法
+							      </div>
+							    </div>
+							  </div>
+							</div>
+  						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<div class="panel panel-default">
+  						<div class="panel-heading">获得附近理发店</div>
+  						<div class="panel-body">  							
+  							<div class="row">
+	  							<div class="col-md-6 col-md-offset-3">
+		    						<form role="form">
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="经度" id="form-get-longitude">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="纬度" id="form-get-latitude">
+									  </div>
+                                      <button type="button" id="get-near-shop" class="btn btn-success col-md-offset-1">发送</button>
+                                      <button type="button" id="quickappt" class="btn btn-danger col-md-offset-4">报错</button>
+									</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="alert alert-success" role="alert" hidden="true"><p></p></div>
+								</div>
+							</div>	
+							<div class="panel-group" id="accordion-nearshop">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#accordion-nearshop" href="#api-nearshop">
+							          挑战说明
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="api-nearshop" class="panel-collapse collapse">
+							      <div class="panel-body">
+							      	 输入测试数据，查看返回是否合法
+							      </div>
+							    </div>
+							  </div>
+							</div>	
+  						</div>
+					</div>
+				</div>
+			</div>
+		    <div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<div class="panel panel-default">
+  						<div class="panel-heading">理发师注册</div>
+  						<div class="panel-body">
+    						<div class="row">
+	  							<div class="col-md-6 col-md-offset-3">
+		    						<form role="form">
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="姓名" id="form-baregister-name">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="电话" id="form-baregister-phone">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="密码" id="form-baregister-password">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="性别" id="form-baregister-sex">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="理发店" id="form-baregister-shop">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="可预约时间" id="form-baregister-time">
+									  </div>
+                                      <button type="button" id="baregister" class="btn btn-success col-md-offset-1">发送</button>
+                                      <button type="button" id="quickappt" class="btn btn-danger col-md-offset-4">报错</button>
+									</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="alert alert-success" role="alert" hidden="true"><p></p></div>
+								</div>
+							</div>	
+							<div class="panel-group" id="accordion-baregister">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#accordion-baregister" href="#api-baregister">
+							          挑战说明
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="api-baregister" class="panel-collapse collapse">
+							      <div class="panel-body">
+							      	输入测试数据，查看返回是否合法
+							      </div>
+							    </div>
+							  </div>
+							</div>
+  						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<div class="panel panel-default">
+  						<div class="panel-heading">理发师登陆</div>
+  						<div class="panel-body">
+    						<div class="row">
+	  							<div class="col-md-6 col-md-offset-3">
+		    						<form role="form">
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="电话" id="form-barlogin-phone">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="密码" id="form-barlogin-password">
+									  </div>
+                                      <button type="button" id="barlogin" class="btn btn-success col-md-offset-1">发送</button>
+                                      <button type="button" id="quickappt" class="btn btn-danger col-md-offset-4">报错</button>
+									</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="alert alert-success" role="alert" hidden="true"><p></p></div>
+								</div>
+							</div>	
+							<div class="panel-group" id="accordion-barlogin">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#accordion-barlogin" href="#api-barlogin">
+							          挑战说明
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="api-barlogin" class="panel-collapse collapse">
+							      <div class="panel-body">
+							      	输入测试数据，查看返回是否合法
+							      </div>
+							    </div>
+							  </div>
+							</div>
+  						</div>
+					</div>
+				</div>
+			</div>
+            <div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<div class="panel panel-default">
+  						<div class="panel-heading">理发师是否注册</div>
+  						<div class="panel-body">
+    						<div class="row">
+	  							<div class="col-md-6 col-md-offset-3">
+		    						<form role="form">
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="电话" id="form-bar-isregister-phone">
+									  </div>
+                                      <button type="button" id="bar-is-register" class="btn btn-success col-md-offset-1">发送</button>
+                                      <button type="button" id="quickappt" class="btn btn-danger col-md-offset-4">报错</button>
+									</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="alert alert-success" role="alert" hidden="true"><p></p></div>
+								</div>
+							</div>
+							<div class="panel-group" id="accordion-baisregister">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#accordion-baisregister" href="#api-baisregister">
+							          挑战说明
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="api-baisregister" class="panel-collapse collapse">
+							      <div class="panel-body">
+							      	输入测试数据，查看返回是否合法
+							      </div>
+							    </div>
+							  </div>
+							</div>
+  						</div>
+					</div>
+				</div>
+			</div>
+        	<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<div class="panel panel-default">
+  						<div class="panel-heading">理发师设置时间</div>
+  						<div class="panel-body">
+    						<div class="row">
+	  							<div class="col-md-6 col-md-offset-3">
+		    						<form role="form">
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="电话" id="form-barset-phone">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="时间" id="form-barset-time">
+									  </div>
+                                      <button type="button" id="barset" class="btn btn-success col-md-offset-1">发送</button>
+                                      <button type="button" id="quickappt" class="btn btn-danger col-md-offset-4">报错</button>
+									</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="alert alert-success" role="alert" hidden="true"><p></p></div>
+								</div>
+							</div>
+							<div class="panel-group" id="accordion-barset">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#accordion-barset" href="#api-barset">
+							          挑战说明
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="api-barset" class="panel-collapse collapse">
+							      <div class="panel-body">
+							      	输入测试数据，查看返回是否合法
+							      </div>
+							    </div>
+							  </div>
+							</div>
+  						</div>
+					</div>
+				</div>
+			</div>
+            <div class="row">
+				<div class="col-md-offset-3 col-md-6">
+					<div class="panel panel-default">
+  						<div class="panel-heading">再约请求理发师</div>
+  						<div class="panel-body">
+    						<div class="row">
+	  							<div class="col-md-6 col-md-offset-3">
+		    						<form role="form">
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="电话" id="form-getbarber-phone">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control" placeholder="日期" id="form-getbarber-date">
+									  </div>
+                                      <button type="button" id="getbarber" class="btn btn-success col-md-offset-1">发送</button>
+                                      <button type="button" id="" class="btn btn-danger col-md-offset-4">报错</button>
+									</form>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="alert alert-success" role="alert" hidden="true"><p></p></div>
+								</div>
+							</div>
+							<div class="panel-group" id="accordion-barset">
+							  <div class="panel panel-default">
+							    <div class="panel-heading">
+							      <h4 class="panel-title">
+							        <a data-toggle="collapse" data-parent="#accordion-barset" href="#api-barset">
+							          挑战说明
+							        </a>
+							      </h4>
+							    </div>
+							    <div id="api-barset" class="panel-collapse collapse">
+							      <div class="panel-body">
+							      	输入测试数据，查看返回是否合法
+							      </div>
+							    </div>
+							  </div>
+							</div>
+  						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</body>
+	<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="/static/js/test.js"></script>
+</html>

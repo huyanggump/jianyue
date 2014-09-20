@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" class="demo-1 no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>传送门</title>
+        <meta name="description" content="Hover Effects with animated SVG Shapes using Snap.svg" />
+		<meta name="keywords" content="animated svg, hover effect, grid, svg shape html, " />
+		<meta name="author" content="Codrops" />
+		<link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/component.css" />
+		<script src="/static/js/snap.svg-min.js"></script>
+		<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="container">
+			<!-- Top Navigation -->
+			<header class="codrops-header">
+				<h1>传送门<span>选择你准备挑战的项目</span></h1>
+			</header>
+			<section id="grid" class="grid clearfix">
+				<a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+					<figure>
+						<img src="/static/image/1.png" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+						<figcaption>
+							<h2>预约接口测试</h2>
+							<p>测试服务器端预约接口，正在进行中</p>
+							<button>开始测试</button>
+						</figcaption>
+					</figure>
+				</a>
+				<a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+					<figure>
+						<img src="/static/image/3.png" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+						<figcaption>
+							<h2>顾客客户端测试</h2>
+							<p>下载客户端并测试提交bug</p>
+							<button>马上下载</button>
+						</figcaption>
+					</figure>
+				</a>
+				<a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+					<figure>
+						<img src="/static/image/5.png" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+						<figcaption>
+							<h2>理发师客户端测试</h2>
+							<p>下载理发师端，测试并提交bug</p>
+							<button >马上下载</button>
+						</figcaption>
+					</figure>
+				</a>
+				<a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+					<figure>
+						<img src="/static/image/7.png" />
+						<svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+						<figcaption>
+							<h2>Comming soon</h2>
+							<p>攻城狮正在拼...</p>
+							<button>别急</button>
+						</figcaption>
+					</figure>
+				</a>
+			</section>
+		</div><!-- /container -->
+        <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+		<script>
+			(function() {
+	
+				function init() {
+					var speed = 250,
+						easing = mina.easeinout;
+
+					[].slice.call ( document.querySelectorAll( '#grid > a' ) ).forEach( function( el ) {
+						var s = Snap( el.querySelector( 'svg' ) ), path = s.select( 'path' ),
+							pathConfig = {
+								from : path.attr( 'd' ),
+								to : el.getAttribute( 'data-path-hover' )
+							};
+
+						el.addEventListener( 'mouseenter', function() {
+							path.animate( { 'path' : pathConfig.to }, speed, easing );
+						} );
+
+						el.addEventListener( 'mouseleave', function() {
+							path.animate( { 'path' : pathConfig.from }, speed, easing );
+						} );
+					} );
+				}
+
+				init();
+
+			})();
+		</script>
+	</body>
+</html>
