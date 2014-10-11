@@ -18,8 +18,11 @@ urlpatterns = patterns('',
     url('^barber/set-time/$', 'barber.views.set_appt_time'),
     url('^test/$', 'jianyue.views.test'),
 
-    url('^test/player/$', 'jianyue.views.player'),
-    url('^test/player/door/$', 'jianyue.views.door'),
-    url('^test/player/login/$', 'jianyue.views.login'),
-    url('^bug/', 'jianyue.views.bug'),
+    url('^update/customer/name/$', 'customer.views.update_name'),
+    url('^update/customer/sex/$', 'customer.views.update_sex'),
+    url('^update/customer/profile/$', 'customer.views.update_profile'),
+
+    url('^update/barber/name/$', 'barber.views.update_name'),
+    url('^update/barber/sex/$', 'barber.views.update_sex'),
+    url('^update/barber/profile/$', 'barber.views.update_profile'),
 )

@@ -61,8 +61,8 @@ def submit_order(request):
         #except CustomerDoesNotExistError:
         CustomersManager.add_customer(phone=data['cusphone'], name=data['cusname'], sex=data['sex'])
 
-        time_conflict(phone=data['cusphone'], time_=data['time'])  # ??
-
+        #time_conflict(phone=data['cusphone'], time_=data['time'])  # ??
+        order_clash(bar_phone=data['barphone'], time_=data['time'])
         time_ = calculate_order_time(hairstyle=data['hairstyle'], time_=data['time'])
 
         order = OrdersManager.add_order(cus_phone=data['cusphone'], bar_phone=data['barphone'],
@@ -102,3 +102,49 @@ def get_barber(request):
     finally:
         result['data'] = re_data
         return HttpResponse(encode(result))
+
+
+def update_name(request):
+    result = {'code': 100, 'log': "Customer's name update success!"}
+    re_data = None
+    try:
+        data = Checker.request(request, ['phone', 'name'])
+        CustomerProxy(phone=data['phone']).name = data['name']
+    except JianyueError as e:
+        result = e.info
+    finally:
+        result['data'] = re_data
+        return HttpResponse(encode(result))
+
+
+def update_sex(request):
+    result = {'code': 100, 'log': "Customer's sex update success!"}
+    re_data = None
+    try:
+        data = Checker.request(request, ['phone', 'sex'])
+        CustomerProxy(phone=data['phone']).sex = data['sex']
+    except JianyueError as e:
+        result = e.info
+    finally:
+        result['data'] = re_data
+        return HttpResponse(encode(result))
+
+
+def update_profile(request):
+    result = {'code': 100, 'log': '返回所需要的信息'}
+    re_data = None
+    try:
+        data = Checker.request(request, ['phone'])
+        customer = CustomerProxy(phone=data['phone'])
+        customer.profile = 'profile/customer/' + customer.phone + '.png'
+        re_data = {'key': customer.profile,
+                   'bucket_name': 'jianyue-img',
+                   'access_key_id': 'DS1sGprn39SnhFDV',
+                   'access_key_secret': 'dFmlLMHapOfyUKTDeeUFCp7M64U1aD',
+                   }
+    except JianyueError as e:
+        result = e.info
+    finally:
+        result['data'] = re_data
+        return HttpResponse(encode(result))
+    #return HttpResponse(encode(result))

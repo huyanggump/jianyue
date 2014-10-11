@@ -60,6 +60,16 @@ class CustomerProxy:
         self.__customer.cus_sex = sex_
         self.__customer.save()
 
+    @property
+    def profile(self):
+        return self.__customer.cus_profile
+
+    @profile.setter
+    def profile(self, image):
+        Checker.profile(image)
+        self.__customer.cus_profile = image
+        self.__customer.save()
+
     def get_dict(self):
         return {'name': self.__customer.cus_name,
                 'phone': self.__customer.cus_phone,

@@ -124,6 +124,16 @@ class BarberProxy:
         self.__barber.free_time = time_
         self.__barber.save()
 
+    @property
+    def profile(self):
+        return self.__barber.barber_profile
+
+    @profile.setter
+    def profile(self, image):
+        Checker.profile(image)
+        self.__barber.barber_profile = image
+        self.__barber.save()
+
     def match(self, password: str) -> bool:
         if not self.__barber.barber_pass == password:
             raise PasswordDoesNotMatch

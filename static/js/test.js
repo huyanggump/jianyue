@@ -77,5 +77,12 @@ $(document).ready(function(){
 				$('#text').text(data);
 			});
 	});
+    $('#update-cus').click(function(){
+		$.post("/update/customer/profile/",{"phone":$("#form-update-cus-phone")[0].value},
+			function(parameters){
+                var data = parameters.data;
+				$('#text').text(data);
+			});
+	});
 
 });

@@ -105,3 +105,50 @@ def set_appt_time(request):
     finally:
         result['data'] = re_data
         return HttpResponse(encode(result))
+
+
+def update_name(request):
+    result = {'code': 100, 'log': "Barber's name update success!"}
+    re_data = None
+    try:
+        data = Checker.request(request, ['phone', 'name'])
+        BarberProxy(phone=data['phone']).name = data['name']
+    except JianyueError as e:
+        result = e.info
+    finally:
+        result['data'] = re_data
+        return HttpResponse(encode(result))
+
+
+def update_sex(request):
+    result = {'code': 100, 'log': "Barber's sex update success!"}
+    re_data = None
+    try:
+        data = Checker.request(request, ['phone', 'sex'])
+        BarberProxy(phone=data['phone']).sex = data['sex']
+    except JianyueError as e:
+        result = e.info
+    finally:
+        result['data'] = re_data
+        return HttpResponse(encode(result))
+
+
+##
+def update_profile(request):
+    result = {'code': 100, 'log': "return infomation"}
+    re_data = None
+    try:
+        data = Checker.request(request, ['phone'])
+        barber = BarberProxy(phone=data['phone'])
+        barber.profile = 'profile/barber/' + barber.phone + '.png'
+        re_data = {
+            'key': barber.profile,
+            'bucket_name': 'jianyue-img',
+            'access_key_id': 'DS1sGprn39SnhFDV',
+            'access_key_secret': 'dFmlLMHapOfyUKTDeeUFCp7M64U1aD',
+        }
+    except JianyueError as e:
+        result = e.info
+    finally:
+        result['data'] = re_data
+        return HttpResponse(encode(result))
