@@ -223,6 +223,10 @@ class Checker:
         """
         pass
 
+    @classmethod
+    def profile(cls, image: str):
+        return cls
+
 
 
 

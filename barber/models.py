@@ -11,7 +11,8 @@ class Barber(models.Model):
     barber_phone = models.CharField(max_length=11, unique=True)
     barber_pass = models.CharField(max_length=32)
     barber_sex = models.CharField(max_length=6, null=True)
-    free_time = models.CharField(max_length=70, null=True)
+    free_time = models.CharField(max_length=100, null=True)
+    barber_profile = models.CharField(max_length=100, null=True)
 
     def __unicode__(self):
         return self.barber_name
@@ -32,18 +33,6 @@ class Hairstyle(models.Model):
         db_table = 'hairstyle_ta'
 
 
-class Price(models.Model):
-    price_id = models.AutoField(primary_key=True)
-    price_barber_id = models.ForeignKey(Barber, db_column='price_barber_id')
-    price_hairstyle_id = models.ForeignKey(Hairstyle, db_column='price_hairstyle_id')
-    price = models.FloatField()
-
-    def __unicode__(self):
-        return str(self.price)
-
-    class Meta:
-        db_table = 'price_ta'
-        unique_together = ("price_barber_id", "price_hairstyle_id")
 
 
 

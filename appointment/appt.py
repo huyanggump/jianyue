@@ -63,11 +63,18 @@ def process_time(*, barbers: [BarberProxy], date: str) -> [dict]:  # 最好做�
     return re_barbers
 
 
-def time_conflict(*, phone: str, time_: str):
-    orders = OrdersManager.get_by_cus(phone)
-    for order in orders:
-        if order.time and order.time[0:16] == time_:
-            raise OrderTimeClash
+############## Junhui ################
+def order_clash(*, bar_phone: str, time_: str):
+    """
+    by junhui
+    compare the bar_phone and time_ in database, if time clash,
+    raise OrderTimeClash Error.
+    :raise OrderTimeClash
+    :param bar_phone:
+    :param time_:
+    :return:
+    """
+    pass
 
 
 def calculate_order_time(*, hairstyle, time_):
