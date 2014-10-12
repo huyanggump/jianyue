@@ -4,6 +4,8 @@ from barber.barbers import HairstyleProxy, BarberProxy
 from utilities.push import push_msg
 from robust.exception import OrderTimeClash, PushError
 from robust.checker import Checker
+'''下面一行是junhui增加的'''
+from order.models import *
 
 
 def notify_cus_order_accepted(order):
@@ -63,8 +65,43 @@ def process_time(*, barbers: [BarberProxy], date: str) -> [dict]:  # 最好做�
     return re_barbers
 
 
-############## Junhui ################
-def order_clash(*, bar_phone: str, time_: str):
+'''written by junhui'''
+
+def cal_time(start,end):#计算两个时间点相差的分钟数
+    start_hour = start.split(':')[0]
+    start_min = start.split(':')[1]
+    end_hour = end.split(':')[0]
+    end_min = end.split(':')[1]
+    minutes = (end_hour - start_hour) * 60 + (end_min - start_min)
+    return minutes
+
+def cal_hair_time(hair:str):#查询出此发型所需分钟数
+    hairstyle = Hairstyle.objects.get(hairstyle_name = hair)
+    return hairstyle.hairstyle_time
+
+def order_clash(*, bar_phone: str, time_: str,hair: str):
+    barber = Barber.objects.get(barber_phone = bar_phone)
+    ord_nums = Order.objects.filter(ord_barber_id = barber.barber_id).count()#属于此理发师的订单数目
+    if ord_nums == 0:
+        print('') #如果此理发师的订单数目为零，那么显然不会冲突。(print没有意义，但是不知道写啥，就写了这条语句。)
+    else:
+        ord_L = Order.objects.filter(ord_barber_id = barber.barber_id).values('ord_time')
+        for ord_D in ord_L: #遍历每一条订单记录来检测是否存在冲突
+            date = ord_D['ord_time'].split(';')[0]
+            start_time = ord_D['ord_time'].split(';')[1].split('-')[0]
+            end_time = ord_D['ord_time'].split(';')[1].split('-')[1]
+            checking_date = time_.split(';')[0]
+            checking_time = time_.split(';')[1]
+            if checking_date == date: #预约日期相符的话继续比较
+                if start_time <= checking_time < end_time:
+                    raise OrderTimeClash
+                elif ( checking_time<start_time and cal_time(checking_time,start_time) < cal_hair_time(hair) ):
+                    raise OrderTimeClash
+                else: #时间不冲突，则继续比较下面的订单
+                    print('')
+            else: #预约日期不相符的话此条订单不会相冲突，继续比较下面的订单
+                print('')
+
     """
     by junhui
     compare the bar_phone and time_ in database, if time clash,
@@ -74,8 +111,6 @@ def order_clash(*, bar_phone: str, time_: str):
     :param time_:
     :return:
     """
-    pass
-
 
 def calculate_order_time(*, hairstyle, time_):
     cut_time = HairstyleProxy(hairstyle).time
